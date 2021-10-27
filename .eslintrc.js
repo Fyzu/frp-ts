@@ -11,7 +11,7 @@ module.exports = {
 		project: 'tsconfig.eslint.json',
 		extraFileExtensions: ['.json'],
 	},
-	plugins: ['@typescript-eslint', 'jest', 'import', 'unicorn'],
+	plugins: ['@typescript-eslint', 'jest', 'import', 'react', 'unicorn'],
 	extends: [
 		'eslint:recommended',
 		'plugin:@typescript-eslint/eslint-recommended',
@@ -20,6 +20,7 @@ module.exports = {
 		'plugin:import/errors',
 		'plugin:import/warnings',
 		'plugin:import/typescript',
+		'plugin:react/recommended',
 	],
 	rules: {
 		semi: 'off',
@@ -125,6 +126,8 @@ module.exports = {
 			},
 		],
 		eqeqeq: 2,
+		'react/jsx-uses-vars': 2,
+		'react/jsx-uses-react': 2,
 	},
 	overrides: [
 		{
@@ -134,4 +137,10 @@ module.exports = {
 			},
 		},
 	],
+	settings: {
+		react: {
+			version: 'detect',
+			pragma: 'h',
+		},
+	},
 }
