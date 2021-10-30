@@ -69,6 +69,7 @@ module.exports = {
 				devDependencies: [
 					'./*.@(js|ts|tsx)',
 					'./scripts/**/*.@(js|ts|tsx)',
+					'./packages/dom/demo/webpack.config.ts',
 					...lernaJson.packages.map((directory) => `${directory}/**/*.@(stories|mock|test|spec).@(ts|tsx)`),
 				],
 			},
@@ -139,7 +140,7 @@ module.exports = {
 	],
 	settings: {
 		react: {
-			version: 'detect',
+			version: 'latest',
 			pragma: 'h',
 		},
 	},
