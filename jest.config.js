@@ -11,8 +11,8 @@ module.exports = {
 			statements: 100,
 		},
 	},
-	collectCoverageFrom: ['./**/src/**/*.ts'],
-	coveragePathIgnorePatterns: ['index.ts'],
+	collectCoverageFrom: ['./**/src/**/*.ts', './**/src/**/*.tsx'],
+	coveragePathIgnorePatterns: ['index.ts', 'index.tsx', 'webpack.config.ts'],
 	testMatch: ['./**/*.spec.(ts|tsx)'],
 	testPathIgnorePatterns: ['/coverage/', '/node_modules/', '/lib/'],
 }
