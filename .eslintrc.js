@@ -129,6 +129,7 @@ module.exports = {
 		eqeqeq: 2,
 		'react/jsx-uses-vars': 2,
 		'react/jsx-uses-react': 2,
+		'react/no-children-prop': 0,
 	},
 	overrides: [
 		{
