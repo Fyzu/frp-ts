@@ -10,6 +10,7 @@ export interface Update<A> {
 export interface Atom<A> extends Property<A> {
 	readonly set: (a: A) => void
 	readonly modify: (...updates: readonly Update<A>[]) => void
+	readonly toProperty: () => Property<A>
 }
 
 export const newAtom = <A>(initial: A): Atom<A> => {
@@ -30,10 +31,13 @@ export const newAtom = <A>(initial: A): Atom<A> => {
 		}
 		set(value)
 	}
+	const property = newProperty(get, subscribe)
+	const toProperty = () => property
 
 	return {
-		...newProperty(get, subscribe),
+		...property,
 		set,
 		modify,
+		toProperty,
 	}
 }
