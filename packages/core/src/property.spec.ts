@@ -35,65 +35,23 @@ describe('combine', () => {
 		expect(disposeA).toHaveBeenCalledTimes(1)
 		expect(disposeB).toHaveBeenCalledTimes(1)
 	})
-	it('combine multicasts', () => {
+	it('combine lost notification of middle node', () => {
 		const a = newAtom(1)
 		const b = combine(a, (a) => [a])
 
-
-		const c = combine(b, a, (v1, v2) => [v1, v2])
+		const c = combine(a, b, (v1, v2) => [v1, v2])
 
 		const cb1 = jest.fn()
 		c.subscribe({
-			next: cb1
+			next: () => c.get() // -> a.get(); b.get()
 		})
 
 		b.subscribe({
-			next: c.get
+			next: cb1
 		})
 
 		a.set(2)
 		expect(cb1).toBeCalledTimes(1)
-		// a.set(2)
-		//
-		// b.subscribe({
-		// 	next: () => {}
-		// })
-		//
-		// const cb1 = jest.fn()
-		// from(c).subscribe(cb1)
-		//
-		// await Promise.resolve().then(() => {
-		// 	c.get()
-		// }).then(() => {
-		// 	a.set(2)
-		// 	c.get()
-		// })
-		//
-		// expect(cb1).toBeCalledTimes(2)
-		// const cb1 = jest.fn()
-		// const c1 = combine(range, period, (a, b) => [a, b])
-		// c1.get()
-		// c1.subscribe({
-		// 	next: cb1
-		// })
-		//
-		// const value = newAtom({})
-		// const result = combine(value, period, (a, b) => [a, b])
-		//
-		// const cb2 = jest.fn()
-		// result.get()
-		// result.subscribe({
-		// 	next: cb2
-		// })
-		//
-		// const cb3 = jest.fn()
-		// period.get()
-		// result.subscribe({
-		// 	next: cb3
-		// })
-		//
-		// expect(cb1).toBeCalledTimes(1)
-
 	})
 	it('maps', () => {
 		const f = (n: number) => `value: ${n}`
